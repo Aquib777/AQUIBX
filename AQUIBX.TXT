@@ -1,0 +1,421 @@
+-- Gui to Lua
+-- Version: 3.2
+
+-- Instances:
+
+local AQUIBX = Instance.new("ScreenGui")
+local MainFrame = Instance.new("Frame")
+local UICorner = Instance.new("UICorner")
+local CBRING = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local _200STUD = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local HBE = Instance.new("TextButton")
+local UICorner_4 = Instance.new("UICorner")
+local ADMIN = Instance.new("TextButton")
+local UICorner_5 = Instance.new("UICorner")
+local BLIZZY = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local AC = Instance.new("TextButton")
+local UICorner_7 = Instance.new("UICorner")
+local HubName = Instance.new("TextLabel")
+local Info = Instance.new("TextLabel")
+local UICorner_8 = Instance.new("UICorner")
+
+--Properties:
+
+AQUIBX.Name = "AQUIBX"
+AQUIBX.Parent = game:WaitForChild("CoreGui")
+AQUIBX.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
+
+MainFrame.Name = "MainFrame"
+MainFrame.Parent = AQUIBX
+MainFrame.BackgroundColor3 = Color3.fromRGB(211, 211, 211)
+MainFrame.BorderSizePixel = 0
+MainFrame.Position = UDim2.new(0.303225815, 0, 0.21682243, 0)
+MainFrame.Size = UDim2.new(0, 504, 0, 283)
+
+UICorner.Parent = MainFrame
+
+CBRING.Name = "CBRING"
+CBRING.Parent = MainFrame
+CBRING.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+CBRING.BorderSizePixel = 0
+CBRING.Position = UDim2.new(0.0674603209, 0, 0.770318031, 0)
+CBRING.Size = UDim2.new(0, 124, 0, 35)
+CBRING.Font = Enum.Font.DenkOne
+CBRING.Text = "CBRING"
+CBRING.TextColor3 = Color3.fromRGB(255, 255, 255)
+CBRING.TextSize = 24.000
+CBRING.TextWrapped = true
+
+UICorner_2.Parent = CBRING
+
+CBRING.MouseButton1Click:Connect(function()
+
+
+	_G.Reach = 0
+	_G.KeyBindHigher = "q"
+	_G.KeyBindLower = "e"
+	_G.ReachOff = false -- Set this to true if you want to disable the reach lol
+
+	game:GetService"RunService".Stepped:Connect(function()
+		if _G.ReachOff then return end  
+		pcall(function()
+			Sword = game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Handle
+			for i,v in pairs(game.Players:GetPlayers()) do 
+				if v ~= game.Players.LocalPlayer and v.Character:FindFirstChild("Left Arm") then
+					if (game.Players.LocalPlayer.Character.Torso.Position - v.Character.Torso.Position).Magnitude <= _G.Reach then
+						v.Character['Left Arm']:BreakJoints()
+						v.Character['Left Arm'].Transparency = 1
+						v.Character['Left Arm'].CanCollide = false
+						v.Character['Left Arm'].CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(1,0,-3.5)
+						v.Character['Left Leg']:BreakJoints()
+						v.Character['Left Leg'].Transparency = 1
+						v.Character['Left Leg'].CanCollide = false
+						v.Character['Left Leg'].CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame * CFrame.new(1,0,-3.5)
+					end
+				end
+			end
+		end)
+	end)
+
+	local Mouse = game.Players.LocalPlayer:GetMouse()
+	Mouse.KeyDown:Connect(function(key)
+		if key == _G.KeyBindHigher then
+			_G.Reach = _G.Reach + 1 
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "AQUIBX";
+				Text = "Reach set to " .. _G.Reach;
+				Icon = "";
+				Duration = 1;})
+		end
+	end)
+
+
+	local Mouse = game.Players.LocalPlayer:GetMouse()
+	Mouse.KeyDown:Connect(function(key)
+		if key == _G.KeyBindLower then
+			_G.Reach = _G.Reach - 1 
+			game.StarterGui:SetCore("SendNotification", {
+				Title = "AQUIBX";
+				Text = "Reach set to " .. _G.Reach;
+				Icon = "";
+				Duration = 1;})
+		end
+	end)
+
+
+end)
+
+_200STUD.Name = "200STUD"
+_200STUD.Parent = MainFrame
+_200STUD.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_200STUD.BorderSizePixel = 0
+_200STUD.Position = UDim2.new(0.376984119, 0, 0.770318031, 0)
+_200STUD.Size = UDim2.new(0, 124, 0, 35)
+_200STUD.Font = Enum.Font.DenkOne
+_200STUD.Text = "200 STUD"
+_200STUD.TextColor3 = Color3.fromRGB(255, 255, 255)
+_200STUD.TextSize = 24.000
+_200STUD.TextWrapped = true
+
+UICorner_3.Parent = _200STUD
+
+_200STUD.MouseButton1Click:Connect(function()
+	local toggle = Enum.KeyCode.T
+	setsimulationradius(math.huge,math.huge)
+	local active = false
+	local ignoreTeams = true
+	local plr = game:GetService("Players").LocalPlayer
+
+
+	local spoofcf = nil
+
+	local mt = getrawmetatable(game)
+	setreadonly(mt,false)
+	local index = mt.__index
+
+	mt.__index = newcclosure(function(t,i)
+		if not checkcaller() and typeof(t) == "Instance" and t:IsA("BasePart") and tostring(t) == "Handle" and (tostring(i) == "CFrame" or tostring(i) == "Position") and spoofcf then
+			local char = plr.Character
+			if tostring(i) == "CFrame" then
+				return spoofcf
+			elseif tostring(i) == "Position" then
+				return spoofcf.p
+			end
+		end
+		return index(t,i)
+	end)
+
+	game:GetService("UserInputService").InputBegan:Connect(function(inp,gpe)
+		if gpe then return end
+		if inp.KeyCode == toggle then
+			active = true
+		end
+	end)
+	game:GetService("UserInputService").InputEnded:Connect(function(inp,gpe)
+		if gpe then return end
+		if inp.KeyCode == toggle then
+			active = false
+		end
+	end)
+
+	local function getClosestCharacter()
+		local closest = nil
+		local lowest = 99999
+		local hrp = plr.Character and plr.Character.PrimaryPart
+		for _,v in pairs(game:GetService("Players"):GetPlayers()) do
+			if v ~= plr then
+				local hum = v.Character and v.Character:FindFirstChildOfClass("Humanoid")
+				--if v.Team ~= plr.Team and hum and hum.Health < 10000 then
+				local vhrp = v.Character and v.Character.PrimaryPart
+				local hum = v.Character and v.Character:FindFirstChildOfClass("Humanoid")
+				if vhrp and hum and hum.Health > 0 then
+					local dist = (vhrp.Position-hrp.Position).Magnitude
+					if dist < lowest then
+						lowest = dist
+						closest = v.Character
+					end
+				end
+				--end
+			end
+		end
+		return closest
+	end
+
+	local t = tick()
+	game:GetService("RunService").RenderStepped:Connect(function()
+		if plr.Character then
+			local rightArm = plr.Character:FindFirstChild("Right Arm")
+			local rightGrip = rightArm and rightArm:FindFirstChild("RightGrip")
+			local s = plr.Character:FindFirstChildOfClass("Tool") or plr.Backpack:FindFirstChildOfClass("Tool")
+			local h = s and s:FindFirstChild("Handle")
+			if h and rightGrip then
+				spoofcf = rightArm.CFrame*rightGrip.C0
+				if not active then 
+					rightGrip.Enabled = true
+					return 
+				end
+				if tick()-t >= 0.05 then
+					rightGrip.Enabled = false
+					t = tick()
+				elseif tick()-t >= 0.025 then
+					rightGrip.Enabled = true
+				end
+				local target = plr:GetMouse().Target
+				local p2 = target and target:FindFirstAncestorOfClass("Model") and game:GetService("Players"):GetPlayerFromCharacter(target:FindFirstAncestorOfClass("Model"))
+				local char
+				if p2 and p2.Character and p2.Character:FindFirstChildOfClass("Humanoid") and p2.Character:FindFirstChildOfClass("Humanoid").Health > 0 then
+					char = p2.Character
+				end
+				char = char or getClosestCharacter()
+				if char and spoofcf then
+					h.CFrame = char.PrimaryPart and char.PrimaryPart.CFrame
+				end
+			else
+				spoofcf = nil
+			end
+		end
+	end)
+	local function newChar(char)
+		char.ChildAdded:Connect(function(s)
+			if s:IsA("Tool") then
+				local h = s:WaitForChild("Handle")
+				if h then
+					for _,v in pairs(getconnections(h.Changed)) do
+						v:Disable()
+					end
+					for _,v in pairs(getconnections(h:GetPropertyChangedSignal("Position"))) do
+						v:Disable()
+					end
+					for _,v in pairs(getconnections(h:GetPropertyChangedSignal("CFrame"))) do
+						v:Disable()
+					end
+				end
+			end
+		end)
+		char:WaitForChild("Right Arm").ChildAdded:Connect(function(c)
+			if c:IsA("Weld") then
+				for _,v in pairs(getconnections(c.Changed)) do
+					v:Disable()
+				end
+				for _,v in pairs(getconnections(c:GetPropertyChangedSignal("Enabled"))) do
+					v:Disable()
+				end
+			end
+		end)
+	end
+	plr.CharacterAdded:Connect(newChar)
+	if plr.Character then newChar(plr.Character) end
+end)
+
+HBE.Name = "HBE"
+HBE.Parent = MainFrame
+HBE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HBE.BorderSizePixel = 0
+HBE.Position = UDim2.new(0.696428537, 0, 0.770318031, 0)
+HBE.Size = UDim2.new(0, 124, 0, 35)
+HBE.Font = Enum.Font.DenkOne
+HBE.Text = "HBE"
+HBE.TextColor3 = Color3.fromRGB(255, 255, 255)
+HBE.TextSize = 24.000
+HBE.TextWrapped = true
+
+UICorner_4.Parent = HBE
+
+HBE.MouseButton1Click:Connect(function()
+	local Player = game:GetService("Players").LocalPlayer
+	game:GetService("RunService").Stepped:connect(function()
+		for i,v in pairs (game:GetService("Players"):GetChildren()) do
+			if v.TeamColor ~= Player.TeamColor and v.Name ~= Player.Name then
+				v.Character.HumanoidRootPart.Size = Vector3.new(5,8,5)
+				v.Character.HumanoidRootPart.Material = "Metal"
+				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Black")
+				v.Character.HumanoidRootPart.Transparency = 0.8
+			elseif v.TeamColor ~= Player.TeamColor and v.Name == "Pet_AtorAltAccount" then
+				v.Character.HumanoidRootPart.Size = Vector3.new(3,5,3)
+				v.Character.HumanoidRootPart.Material = "Metal"
+				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("New Yeller")
+				v.Character.HumanoidRootPart.Transparency = 0.8
+			end
+		end
+	end)
+end)
+
+ADMIN.Name = "ADMIN"
+ADMIN.Parent = MainFrame
+ADMIN.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ADMIN.BorderSizePixel = 0
+ADMIN.Position = UDim2.new(0.696428537, 0, 0.515901089, 0)
+ADMIN.Size = UDim2.new(0, 124, 0, 35)
+ADMIN.Font = Enum.Font.DenkOne
+ADMIN.Text = "ADMIN"
+ADMIN.TextColor3 = Color3.fromRGB(255, 255, 255)
+ADMIN.TextSize = 24.000
+ADMIN.TextWrapped = true
+
+UICorner_5.Parent = ADMIN
+
+ADMIN.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+end)
+
+BLIZZY.Name = "BLIZZY"
+BLIZZY.Parent = MainFrame
+BLIZZY.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+BLIZZY.BorderSizePixel = 0
+BLIZZY.Position = UDim2.new(0.37698409, 0, 0.515901089, 0)
+BLIZZY.Size = UDim2.new(0, 124, 0, 35)
+BLIZZY.Font = Enum.Font.DenkOne
+BLIZZY.Text = "BLIZZY"
+BLIZZY.TextColor3 = Color3.fromRGB(255, 255, 255)
+BLIZZY.TextSize = 24.000
+BLIZZY.TextWrapped = true
+
+UICorner_6.Parent = BLIZZY
+
+BLIZZY.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/nknN0y8i"))();
+end)
+
+AC.Name = "AC"
+AC.Parent = MainFrame
+AC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+AC.BorderSizePixel = 0
+AC.Position = UDim2.new(0.0674602687, 0, 0.515901089, 0)
+AC.Size = UDim2.new(0, 124, 0, 35)
+AC.Font = Enum.Font.DenkOne
+AC.Text = "AutoClicker"
+AC.TextColor3 = Color3.fromRGB(255, 255, 255)
+AC.TextSize = 24.000
+AC.TextWrapped = true
+
+UICorner_7.Parent = AC
+
+AC.MouseButton1Click:Connect(function()
+	_G.AutoClicker = true
+	while _G.AutoClicker do
+		wait()
+		pcall(function()
+			local Sword = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass'Tool'
+			Sword:Activate()
+		end)
+	end
+end)
+
+HubName.Name = "HubName"
+HubName.Parent = MainFrame
+HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HubName.BackgroundTransparency = 1.000
+HubName.BorderSizePixel = 0
+HubName.Position = UDim2.new(0.303571433, 0, 0.0671378076, 0)
+HubName.Size = UDim2.new(0, 198, 0, 49)
+HubName.Font = Enum.Font.LuckiestGuy
+HubName.Text = "AquibX"
+HubName.TextColor3 = Color3.fromRGB(0, 0, 0)
+HubName.TextScaled = true
+HubName.TextSize = 14.000
+HubName.TextWrapped = true
+
+Info.Name = "Info"
+Info.Parent = MainFrame
+Info.BackgroundColor3 = Color3.fromRGB(229, 229, 229)
+Info.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Info.BorderSizePixel = 0
+Info.Position = UDim2.new(0.0674603209, 0, 0.240282685, 0)
+Info.Size = UDim2.new(0, 441, 0, 65)
+Info.Font = Enum.Font.SourceSansBold
+Info.Text = "Thanks for using my hub. Hold 'T' key to have the 200 stud enabled. Some scripts might not work. Dm me if you're having any problems: aquib#7666"
+Info.TextColor3 = Color3.fromRGB(0, 0, 0)
+Info.TextSize = 20.000
+Info.TextWrapped = true
+
+UICorner_8.Parent = Info
+
+-- Scripts:
+
+local function WMYFQEU_fake_script() -- MainFrame.Drag 
+	local script = Instance.new('LocalScript', MainFrame)
+
+	local UserInputService = game:GetService("UserInputService")
+
+	local gui = script.Parent
+
+	local dragging
+	local dragInput
+	local dragStart
+	local startPos
+
+	local function update(input)
+		local delta = input.Position - dragStart
+		gui.Position = UDim2.new(startPos.X.Scale, startPos.X.Offset + delta.X, startPos.Y.Scale, startPos.Y.Offset + delta.Y)
+	end
+
+	gui.InputBegan:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseButton1 or input.UserInputType == Enum.UserInputType.Touch then
+			dragging = true
+			dragStart = input.Position
+			startPos = gui.Position
+
+			input.Changed:Connect(function()
+				if input.UserInputState == Enum.UserInputState.End then
+					dragging = false
+				end
+			end)
+		end
+	end)
+
+	gui.InputChanged:Connect(function(input)
+		if input.UserInputType == Enum.UserInputType.MouseMovement or input.UserInputType == Enum.UserInputType.Touch then
+			dragInput = input
+		end
+	end)
+
+	UserInputService.InputChanged:Connect(function(input)
+		if input == dragInput and dragging then
+			update(input)
+		end
+	end)
+end
+coroutine.wrap(WMYFQEU_fake_script)()
