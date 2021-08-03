@@ -22,7 +22,7 @@ local UICorner_8 = Instance.new("UICorner")
 --Properties:
 
 AQUIBX.Name = "AQUIBX"
-AQUIBX.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+AQUIBX.Parent = game:WaitForChild("CoreGui")
 AQUIBX.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MainFrame.Name = "MainFrame"
