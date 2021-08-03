@@ -22,7 +22,7 @@ local UICorner_8 = Instance.new("UICorner")
 --Properties:
 
 AQUIBX.Name = "AQUIBX"
-AQUIBX.Parent = game:WaitForChild("CoreGui")
+AQUIBX.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
 AQUIBX.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MainFrame.Name = "MainFrame"
@@ -323,7 +323,7 @@ AC.BorderSizePixel = 0
 AC.Position = UDim2.new(0.0674602687, 0, 0.515901089, 0)
 AC.Size = UDim2.new(0, 124, 0, 35)
 AC.Font = Enum.Font.DenkOne
-AC.Text = "AutoClicker"
+AC.Text = "AutoCLicker"
 AC.TextColor3 = Color3.fromRGB(255, 255, 255)
 AC.TextSize = 24.000
 AC.TextWrapped = true
@@ -346,7 +346,7 @@ HubName.Parent = MainFrame
 HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 HubName.BackgroundTransparency = 1.000
 HubName.BorderSizePixel = 0
-HubName.Position = UDim2.new(0.303571433, 0, 0.0671378076, 0)
+HubName.Position = UDim2.new(0.303571433, 0, 0.0459363945, 0)
 HubName.Size = UDim2.new(0, 198, 0, 49)
 HubName.Font = Enum.Font.LuckiestGuy
 HubName.Text = "AquibX"
@@ -360,11 +360,12 @@ Info.Parent = MainFrame
 Info.BackgroundColor3 = Color3.fromRGB(229, 229, 229)
 Info.BorderColor3 = Color3.fromRGB(27, 42, 53)
 Info.BorderSizePixel = 0
-Info.Position = UDim2.new(0.0674603209, 0, 0.240282685, 0)
-Info.Size = UDim2.new(0, 441, 0, 65)
+Info.Position = UDim2.new(0.0674603209, 0, 0.219081268, 0)
+Info.Size = UDim2.new(0, 441, 0, 71)
 Info.Font = Enum.Font.SourceSansBold
-Info.Text = "Thanks for using my hub. Hold 'T' key to have the 200 stud enabled. Some scripts might not work. Dm me if you're having any problems: aquib#7666"
+Info.Text = "Thanks for using my hub. Hold 'F' key to have the 200 stud enabled. Some scripts might not work. Dm me if you're having any problems: aquib#7666, Most of the stuff in the GUI are made by Daplyy so yeah, Credits to him."
 Info.TextColor3 = Color3.fromRGB(0, 0, 0)
+Info.TextScaled = true
 Info.TextSize = 20.000
 Info.TextWrapped = true
 
@@ -372,7 +373,7 @@ UICorner_8.Parent = Info
 
 -- Scripts:
 
-local function DLUGOQ_fake_script() -- MainFrame.Drag 
+local function PMRC_fake_script() -- MainFrame.Drag 
 	local script = Instance.new('LocalScript', MainFrame)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -415,4 +416,4 @@ local function DLUGOQ_fake_script() -- MainFrame.Drag
 		end
 	end)
 end
-coroutine.wrap(DLUGOQ_fake_script)()
+coroutine.wrap(PMRC_fake_script)()
