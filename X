@@ -1,3 +1,13 @@
+local playrs = game:GetService("Players")
+local playr = playrs.LocalPlayer
+local whitelisted = { "A_quib", "zfloq", "iQ300t" }
+
+if playr.Name == whitelisted then
+	print("AQUIBX LOADING!")
+else
+	playr:Kick("You are not whitelisted in AQUIBX, Dm: aquib#7666 for whitelist.")
+end
+
 local AQUIBX = Instance.new("ScreenGui")
 local MainFrame = Instance.new("ImageLabel")
 local HubName = Instance.new("TextLabel")
