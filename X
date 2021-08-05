@@ -1,25 +1,21 @@
--- Instances:
-
 local AQUIBX = Instance.new("ScreenGui")
-local MainFrame = Instance.new("Frame")
+local MainFrame = Instance.new("ImageLabel")
+local HubName = Instance.new("TextLabel")
+local Info = Instance.new("TextLabel")
 local UICorner = Instance.new("UICorner")
-local CBRING = Instance.new("TextButton")
-local UICorner_2 = Instance.new("UICorner")
-local _200STUD = Instance.new("TextButton")
-local UICorner_3 = Instance.new("UICorner")
 local HBE = Instance.new("TextButton")
+local UICorner_2 = Instance.new("UICorner")
+local CBRING = Instance.new("TextButton")
+local UICorner_3 = Instance.new("UICorner")
+local BLIZZY = Instance.new("TextButton")
 local UICorner_4 = Instance.new("UICorner")
 local ADMIN = Instance.new("TextButton")
 local UICorner_5 = Instance.new("UICorner")
-local BLIZZY = Instance.new("TextButton")
-local UICorner_6 = Instance.new("UICorner")
 local AC = Instance.new("TextButton")
+local UICorner_6 = Instance.new("UICorner")
+local _200STUD = Instance.new("TextButton")
 local UICorner_7 = Instance.new("UICorner")
-local HubName = Instance.new("TextLabel")
-local Info = Instance.new("TextLabel")
 local UICorner_8 = Instance.new("UICorner")
-
---Properties:
 
 AQUIBX.Name = "AQUIBX"
 AQUIBX.Parent = game:WaitForChild("CoreGui")
@@ -27,16 +23,83 @@ AQUIBX.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
 MainFrame.Name = "MainFrame"
 MainFrame.Parent = AQUIBX
-MainFrame.BackgroundColor3 = Color3.fromRGB(211, 211, 211)
-MainFrame.BorderSizePixel = 0
+MainFrame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 MainFrame.Position = UDim2.new(0.303225815, 0, 0.21682243, 0)
 MainFrame.Size = UDim2.new(0, 504, 0, 283)
+MainFrame.Image = "rbxassetid://7202991034"
 
-UICorner.Parent = MainFrame
+HubName.Name = "HubName"
+HubName.Parent = MainFrame
+HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+HubName.BackgroundTransparency = 1.000
+HubName.BorderSizePixel = 0
+HubName.Position = UDim2.new(0.303571433, 0, 0.0459363945, 0)
+HubName.Size = UDim2.new(0, 198, 0, 49)
+HubName.Font = Enum.Font.LuckiestGuy
+HubName.Text = "AquibX"
+HubName.TextColor3 = Color3.fromRGB(255, 255, 255)
+HubName.TextScaled = true
+HubName.TextSize = 14.000
+HubName.TextStrokeColor3 = Color3.fromRGB(255, 255, 255)
+HubName.TextWrapped = true
+
+Info.Name = "Info"
+Info.Parent = MainFrame
+Info.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+Info.BackgroundTransparency = 1.000
+Info.BorderColor3 = Color3.fromRGB(27, 42, 53)
+Info.BorderSizePixel = 0
+Info.Position = UDim2.new(0.0436507948, 0, 0.194346279, 0)
+Info.Size = UDim2.new(0, 459, 0, 81)
+Info.Font = Enum.Font.SourceSansBold
+Info.Text = "Thanks for using my hub. Hold 'T' key to have the 200 stud enabled. Dm me if you're having any problems: aquib#7666, Most of the stuff in the GUI are made by Daplyy so yeah, credits to him."
+Info.TextColor3 = Color3.fromRGB(255, 255, 255)
+Info.TextScaled = true
+Info.TextSize = 19.000
+Info.TextStrokeTransparency = 0.000
+Info.TextWrapped = true
+
+UICorner.Parent = Info
+
+HBE.Name = "HBE"
+HBE.Parent = MainFrame
+HBE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+HBE.BackgroundTransparency = 0.590
+HBE.BorderSizePixel = 0
+HBE.Position = UDim2.new(0.696428537, 0, 0.770318031, 0)
+HBE.Size = UDim2.new(0, 124, 0, 35)
+HBE.Font = Enum.Font.DenkOne
+HBE.Text = "HBE"
+HBE.TextColor3 = Color3.fromRGB(255, 255, 255)
+HBE.TextSize = 24.000
+HBE.TextStrokeTransparency = 0.000
+HBE.TextWrapped = true
+
+UICorner_2.Parent = HBE
+
+HBE.MouseButton1Click:Connect(function()
+	local Player = game:GetService("Players").LocalPlayer
+	game:GetService("RunService").Stepped:connect(function()
+		for i,v in pairs (game:GetService("Players"):GetChildren()) do
+			if v.TeamColor ~= Player.TeamColor and v.Name ~= Player.Name then
+				v.Character.HumanoidRootPart.Size = Vector3.new(5,8,5)
+				v.Character.HumanoidRootPart.Material = "Metal"
+				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Black")
+				v.Character.HumanoidRootPart.Transparency = 0.8
+			elseif v.TeamColor ~= Player.TeamColor and v.Name == "Roblox" then
+				v.Character.HumanoidRootPart.Size = Vector3.new(3,5,3)
+				v.Character.HumanoidRootPart.Material = "Metal"
+				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("New Yeller")
+				v.Character.HumanoidRootPart.Transparency = 0.8
+			end
+		end
+	end)
+end)
 
 CBRING.Name = "CBRING"
 CBRING.Parent = MainFrame
 CBRING.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+CBRING.BackgroundTransparency = 0.650
 CBRING.BorderSizePixel = 0
 CBRING.Position = UDim2.new(0.0674603209, 0, 0.770318031, 0)
 CBRING.Size = UDim2.new(0, 124, 0, 35)
@@ -44,9 +107,10 @@ CBRING.Font = Enum.Font.DenkOne
 CBRING.Text = "CBRING"
 CBRING.TextColor3 = Color3.fromRGB(255, 255, 255)
 CBRING.TextSize = 24.000
+CBRING.TextStrokeTransparency = 0.000
 CBRING.TextWrapped = true
 
-UICorner_2.Parent = CBRING
+UICorner_3.Parent = CBRING
 
 CBRING.MouseButton1Click:Connect(function()
 
@@ -82,7 +146,7 @@ CBRING.MouseButton1Click:Connect(function()
 		if key == _G.KeyBindHigher then
 			_G.Reach = _G.Reach + 1 
 			game.StarterGui:SetCore("SendNotification", {
-				Title = "Universal Reach";
+				Title = "AQUIBX";
 				Text = "Reach set to " .. _G.Reach;
 				Icon = "";
 				Duration = 1;})
@@ -95,7 +159,7 @@ CBRING.MouseButton1Click:Connect(function()
 		if key == _G.KeyBindLower then
 			_G.Reach = _G.Reach - 1 
 			game.StarterGui:SetCore("SendNotification", {
-				Title = "Universal Reach";
+				Title = "AQUIBX";
 				Text = "Reach set to " .. _G.Reach;
 				Icon = "";
 				Duration = 1;})
@@ -105,9 +169,77 @@ CBRING.MouseButton1Click:Connect(function()
 
 end)
 
+BLIZZY.Name = "BLIZZY"
+BLIZZY.Parent = MainFrame
+BLIZZY.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+BLIZZY.BackgroundTransparency = 0.150
+BLIZZY.BorderSizePixel = 0
+BLIZZY.Position = UDim2.new(0.37698409, 0, 0.515901089, 0)
+BLIZZY.Size = UDim2.new(0, 124, 0, 35)
+BLIZZY.Font = Enum.Font.DenkOne
+BLIZZY.Text = "BLIZZY"
+BLIZZY.TextColor3 = Color3.fromRGB(255, 255, 255)
+BLIZZY.TextSize = 24.000
+BLIZZY.TextStrokeTransparency = 0.000
+BLIZZY.TextWrapped = true
+
+UICorner_4.Parent = BLIZZY
+
+BLIZZY.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://pastebin.com/raw/nknN0y8i"))();
+end)
+
+ADMIN.Name = "ADMIN"
+ADMIN.Parent = MainFrame
+ADMIN.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+ADMIN.BackgroundTransparency = 0.250
+ADMIN.BorderSizePixel = 0
+ADMIN.Position = UDim2.new(0.696428537, 0, 0.515901089, 0)
+ADMIN.Size = UDim2.new(0, 124, 0, 35)
+ADMIN.Font = Enum.Font.DenkOne
+ADMIN.Text = "ADMIN"
+ADMIN.TextColor3 = Color3.fromRGB(255, 255, 255)
+ADMIN.TextSize = 24.000
+ADMIN.TextStrokeTransparency = 0.000
+ADMIN.TextWrapped = true
+
+UICorner_5.Parent = ADMIN
+
+ADMIN.MouseButton1Click:Connect(function()
+	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
+end)
+
+AC.Name = "AC"
+AC.Parent = MainFrame
+AC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+AC.BackgroundTransparency = 0.250
+AC.BorderSizePixel = 0
+AC.Position = UDim2.new(0.0674602687, 0, 0.515901089, 0)
+AC.Size = UDim2.new(0, 124, 0, 35)
+AC.Font = Enum.Font.DenkOne
+AC.Text = "AutoClicker"
+AC.TextColor3 = Color3.fromRGB(255, 255, 255)
+AC.TextSize = 24.000
+AC.TextStrokeTransparency = 0.000
+AC.TextWrapped = true
+
+UICorner_6.Parent = AC
+
+AC.MouseButton1Click:Connect(function()
+	_G.AutoClicker = true
+	while _G.AutoClicker do
+		wait()
+		pcall(function()
+			local Sword = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass'Tool'
+			Sword:Activate()
+		end)
+	end
+end)
+
 _200STUD.Name = "200STUD"
 _200STUD.Parent = MainFrame
 _200STUD.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
+_200STUD.BackgroundTransparency = 0.560
 _200STUD.BorderSizePixel = 0
 _200STUD.Position = UDim2.new(0.376984119, 0, 0.770318031, 0)
 _200STUD.Size = UDim2.new(0, 124, 0, 35)
@@ -115,9 +247,10 @@ _200STUD.Font = Enum.Font.DenkOne
 _200STUD.Text = "200 STUD"
 _200STUD.TextColor3 = Color3.fromRGB(255, 255, 255)
 _200STUD.TextSize = 24.000
+_200STUD.TextStrokeTransparency = 0.000
 _200STUD.TextWrapped = true
 
-UICorner_3.Parent = _200STUD
+UICorner_7.Parent = _200STUD
 
 _200STUD.MouseButton1Click:Connect(function()
 	local toggle = Enum.KeyCode.T
@@ -247,133 +380,10 @@ _200STUD.MouseButton1Click:Connect(function()
 	if plr.Character then newChar(plr.Character) end
 end)
 
-HBE.Name = "HBE"
-HBE.Parent = MainFrame
-HBE.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-HBE.BorderSizePixel = 0
-HBE.Position = UDim2.new(0.696428537, 0, 0.770318031, 0)
-HBE.Size = UDim2.new(0, 124, 0, 35)
-HBE.Font = Enum.Font.DenkOne
-HBE.Text = "HBE"
-HBE.TextColor3 = Color3.fromRGB(255, 255, 255)
-HBE.TextSize = 24.000
-HBE.TextWrapped = true
 
-UICorner_4.Parent = HBE
+UICorner_8.Parent = MainFrame
 
-HBE.MouseButton1Click:Connect(function()
-	local Player = game:GetService("Players").LocalPlayer
-	game:GetService("RunService").Stepped:connect(function()
-		for i,v in pairs (game:GetService("Players"):GetChildren()) do
-			if v.TeamColor ~= Player.TeamColor and v.Name ~= Player.Name then
-				v.Character.HumanoidRootPart.Size = Vector3.new(5,8,5)
-				v.Character.HumanoidRootPart.Material = "Metal"
-				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("Black")
-				v.Character.HumanoidRootPart.Transparency = 0.8
-			elseif v.TeamColor ~= Player.TeamColor and v.Name == "Roblox" then
-				v.Character.HumanoidRootPart.Size = Vector3.new(3,5,3)
-				v.Character.HumanoidRootPart.Material = "Metal"
-				v.Character.HumanoidRootPart.BrickColor = BrickColor.new("New Yeller")
-				v.Character.HumanoidRootPart.Transparency = 0.8
-			end
-		end
-	end)
-end)
-
-ADMIN.Name = "ADMIN"
-ADMIN.Parent = MainFrame
-ADMIN.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-ADMIN.BorderSizePixel = 0
-ADMIN.Position = UDim2.new(0.696428537, 0, 0.515901089, 0)
-ADMIN.Size = UDim2.new(0, 124, 0, 35)
-ADMIN.Font = Enum.Font.DenkOne
-ADMIN.Text = "ADMIN"
-ADMIN.TextColor3 = Color3.fromRGB(255, 255, 255)
-ADMIN.TextSize = 24.000
-ADMIN.TextWrapped = true
-
-UICorner_5.Parent = ADMIN
-
-ADMIN.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://raw.githubusercontent.com/fatesc/fates-admin/main/main.lua"))();
-end)
-
-BLIZZY.Name = "BLIZZY"
-BLIZZY.Parent = MainFrame
-BLIZZY.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-BLIZZY.BorderSizePixel = 0
-BLIZZY.Position = UDim2.new(0.37698409, 0, 0.515901089, 0)
-BLIZZY.Size = UDim2.new(0, 124, 0, 35)
-BLIZZY.Font = Enum.Font.DenkOne
-BLIZZY.Text = "BLIZZY"
-BLIZZY.TextColor3 = Color3.fromRGB(255, 255, 255)
-BLIZZY.TextSize = 24.000
-BLIZZY.TextWrapped = true
-
-UICorner_6.Parent = BLIZZY
-
-BLIZZY.MouseButton1Click:Connect(function()
-	loadstring(game:HttpGet("https://pastebin.com/raw/nknN0y8i"))();
-end)
-
-AC.Name = "AC"
-AC.Parent = MainFrame
-AC.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-AC.BorderSizePixel = 0
-AC.Position = UDim2.new(0.0674602687, 0, 0.515901089, 0)
-AC.Size = UDim2.new(0, 124, 0, 35)
-AC.Font = Enum.Font.DenkOne
-AC.Text = "AutoClicker"
-AC.TextColor3 = Color3.fromRGB(255, 255, 255)
-AC.TextSize = 24.000
-AC.TextWrapped = true
-
-UICorner_7.Parent = AC
-
-AC.MouseButton1Click:Connect(function()
-	_G.AutoClicker = true
-	while _G.AutoClicker do
-		wait()
-		pcall(function()
-			local Sword = game:GetService'Players'.LocalPlayer.Character:FindFirstChildOfClass'Tool'
-			Sword:Activate()
-		end)
-	end
-end)
-
-HubName.Name = "HubName"
-HubName.Parent = MainFrame
-HubName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-HubName.BackgroundTransparency = 1.000
-HubName.BorderSizePixel = 0
-HubName.Position = UDim2.new(0.303571433, 0, 0.0459363945, 0)
-HubName.Size = UDim2.new(0, 198, 0, 49)
-HubName.Font = Enum.Font.LuckiestGuy
-HubName.Text = "AquibX"
-HubName.TextColor3 = Color3.fromRGB(0, 0, 0)
-HubName.TextScaled = true
-HubName.TextSize = 14.000
-HubName.TextWrapped = true
-
-Info.Name = "Info"
-Info.Parent = MainFrame
-Info.BackgroundColor3 = Color3.fromRGB(229, 229, 229)
-Info.BorderColor3 = Color3.fromRGB(27, 42, 53)
-Info.BorderSizePixel = 0
-Info.Position = UDim2.new(0.0674603209, 0, 0.219081268, 0)
-Info.Size = UDim2.new(0, 441, 0, 71)
-Info.Font = Enum.Font.SourceSansBold
-Info.Text = "Thanks for using my hub. Hold 'T' key to have the 200 stud enabled. Some scripts might not work. Dm me if you're having any problems: aquib#7666, Most of the stuff in the GUI are made by Daplyy so yeah, Credits to him."
-Info.TextColor3 = Color3.fromRGB(0, 0, 0)
-Info.TextScaled = true
-Info.TextSize = 20.000
-Info.TextWrapped = true
-
-UICorner_8.Parent = Info
-
--- Scripts:
-
-local function PMRC_fake_script() -- MainFrame.Drag 
+local function VKTTYED_fake_script()
 	local script = Instance.new('LocalScript', MainFrame)
 
 	local UserInputService = game:GetService("UserInputService")
@@ -416,4 +426,4 @@ local function PMRC_fake_script() -- MainFrame.Drag
 		end
 	end)
 end
-coroutine.wrap(PMRC_fake_script)()
+coroutine.wrap(VKTTYED_fake_script)()
